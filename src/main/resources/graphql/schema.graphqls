@@ -1,0 +1,17 @@
+type Query {
+    getAllUsers: [User],
+    getUserById(id: ID): User
+}
+
+type User {
+    id: ID,
+    name: String,
+    followers: [User]
+    posts: [Post]
+}
+
+type Post {
+    id: ID,
+    title: String,
+    body: String
+}
