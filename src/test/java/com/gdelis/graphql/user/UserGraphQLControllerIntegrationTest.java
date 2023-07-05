@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.graphql.test.tester.ExecutionGraphQlServiceTester;
 import org.springframework.graphql.test.tester.GraphQlTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,38 +16,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UserGraphQLControllerIntegrationTest {
 
    @Autowired
+   ExecutionGraphQlServiceTester executionGraphQlServiceTester;
+
+   @Autowired
    private GraphQlTester graphQlTester;
 
    @Test
    void getAllUsers_shouldReturnListOfUsers() {
-      String document = """
-          query {
-           getAllUsers {
-              id,
-              name
-           }
-          }
-          """;
-
-      graphQlTester.document(document)
-                   .execute()
-                   .path("getAllUsers")
-                   .entityList(User.class)
-                   .hasSize(5);
+      // without calling the client
+      executionGraphQlServiceTester.documentName("getAllUsers")
+                                   .execute()
+                                   .path("getAllUsers")
+                                   .entityList(User.class)
+                                   .hasSize(5);
    }
 
    @Test
    void getUserById_shouldReturnUser() {
-      String document = """
-          query getUserById($id: ID) {
-           getUserById(id: $id) {
-              id,
-              name
-           }
-          }
-          """;
-
-      graphQlTester.document(document)
+      // with calling the client
+      graphQlTester.documentName("getUserById")
                    .variable("id", 1)
                    .execute()
                    .path("getUserById")
