@@ -1,5 +1,6 @@
-package com.gdelis.graphql;
+package com.gdelis.graphql.user;
 
+import com.gdelis.graphql.user.User;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

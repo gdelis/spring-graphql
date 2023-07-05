@@ -1,4 +1,4 @@
-package com.gdelis.graphql;
+package com.gdelis.graphql.user;
 
 import java.util.List;
 

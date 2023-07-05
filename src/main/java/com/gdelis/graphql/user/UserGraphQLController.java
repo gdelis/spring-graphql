@@ -1,4 +1,4 @@
-package com.gdelis.graphql;
+package com.gdelis.graphql.user;
 
 import java.util.List;
 import org.springframework.graphql.data.method.annotation.Argument;
