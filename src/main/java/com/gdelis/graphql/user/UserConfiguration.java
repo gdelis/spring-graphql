@@ -1,6 +1,5 @@
 package com.gdelis.graphql.user;
 
-import com.gdelis.graphql.user.User;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +13,7 @@ public class UserConfiguration {
    public List<User> userList() {
       ArrayList<User> users = new ArrayList<>();
 
-      users.add(new User(1, "George", List.of(2, 3), Collections.emptyList()));
+      users.add(new User(1, "George", List.of(2, 3), List.of(4)));
       users.add(new User(2, "No followers 1", Collections.emptyList(), Collections.emptyList()));
       users.add(new User(3, "No followers 2", Collections.emptyList(), Collections.emptyList()));
       users.add(new User(4, "With posts 1", List.of(1, 2), List.of(1, 2)));
